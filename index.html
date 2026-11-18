@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAVID JABEZ.M | DOPAMINE UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dopamine-purple: #B026FF;
+            --dopamine-yellow: #FAFF00;
+            --dopamine-pink: #FF007A;
+            --dopamine-cyan: #00F0FF;
+            --dopamine-bg: #FDFBFF;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dopamine-bg);
+            color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: float 15s infinite alternate ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5vw, 5vh) scale(1.2); }
+        }
+        .dopamine-btn {
+            background: var(--dopamine-purple);
+            color: white;
+            padding: 20px 40px;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: inline-block;
+            border-radius: 100px;
+            box-shadow: 0 10px 0px #7a16b5, 0 20px 30px rgba(176, 38, 255, 0.3);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            font-size: 1.1rem;
+            border: 4px solid white;
+        }
+        .dopamine-btn:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 15px 0px #7a16b5, 0 25px 40px rgba(176, 38, 255, 0.4);
+            background: var(--dopamine-pink);
+        }
+        .dopamine-btn:active {
+            transform: scale(0.95) translateY(5px);
+            box-shadow: 0 5px 0px #7a16b5;
+        }
+        .project-card {
+            background: white;
+            border: 6px solid #000;
+            border-radius: 40px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            box-shadow: 12px 12px 0px #000;
+        }
+        .project-card:hover {
+            transform: scale(1.03) rotate(-1deg);
+            box-shadow: 20px 20px 0px var(--dopamine-cyan);
+            border-color: var(--dopamine-purple);
+        }
+        .dopamine-cursor {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: var(--dopamine-yellow);
+            border: 3px solid #000;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+            transition: width 0.2s, height 0.2s, background 0.2s;
+        }
+        .stat-bubble {
+            background: white;
+            border: 4px solid #000;
+            border-radius: 100px;
+            padding: 20px 40px;
+            box-shadow: 8px 8px 0px var(--dopamine-pink);
+            transition: all 0.3s ease;
+        }
+        .stat-bubble:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 8px 8px 0px var(--dopamine-yellow);
+        }
+    </style>
+</head>
+<body>
+    <div class="dopamine-cursor" id="cursor"></div>
+
+    <!-- BACKGROUND BLOBS -->
+    <div class="blob w-[500px] h-[500px] bg-purple-400 top-[-10%] left-[-10%]" style="animation-delay: 0s"></div>
+    <div class="blob w-[600px] h-[600px] bg-yellow-300 bottom-[-10%] right-[-10%]" style="animation-delay: -3s"></div>
+    <div class="blob w-[400px] h-[400px] bg-pink-400 top-1/3 left-1/4" style="animation-delay: -6s"></div>
+    <div class="blob w-[500px] h-[500px] bg-cyan-300 bottom-1/4 right-1/4" style="animation-delay: -9s"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 px-8 py-6 flex justify-between items-center">
+        <div class="font-black text-2xl uppercase tracking-tighter italic">David Jabez.M</div>
+        <div class="flex gap-6 font-bold uppercase text-xs tracking-widest">
+            <a href="#work" class="text-slate-800 hover:text-purple-600 transition-colors">Work</a>
+            <a href="#about" class="text-slate-800 hover:text-purple-600 transition-colors">About</a>
+            <a href="mailto:jabeztechw@gmail.com" class="dopamine-btn px-6 py-2 text-[10px]">Hire Me</a>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+        <!-- HERO SECTION -->
+        <section class="min-h-screen px-8 flex flex-col justify-center max-w-6xl mx-auto relative">
+            <div class="relative z-20">
+                <h1 class="text-7xl md:text-9xl font-black leading-none mb-12 tracking-tighter hero-title">
+                    VIBE<br><span class="text-purple-600">CHECKED.</span><br>ROI HIGH.
+                </h1>
+                <p class="text-2xl md:text-3xl max-w-2xl font-bold leading-relaxed mb-12 text-slate-700 hero-sub">
+                    Building <span class="bg-yellow-300 px-2">high-energy</span> e-commerce stores that trigger dopamine and drive insane conversion.
+                </p>
+                <a href="mailto:jabeztechw@gmail.com" class="dopamine-btn text-xl px-12 py-6">
+                    Let's Cook 🚀
+                </a>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="py-24 px-8 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-20">
+            <div class="flex flex-col items-center text-center">
+                <div class="stat-bubble mb-4 stat-card">
+                    <div class="text-6xl font-black text-purple-600" data-value="98">0</div>
+                </div>
+                <p class="text-sm uppercase tracking-widest font-black text-slate-600">Satisfaction %</p>
+            </div>
+            <div class="flex flex-col items-center text-center">
+                <div class="stat-bubble mb-4 stat-card">
+                    <div class="text-6xl font-black text-pink-600" data-value="150">0</div>
+                </div>
+                <p class="text-sm uppercase tracking-widest font-black text-slate-600">Stores Launched</p>
+            </div>
+            <div class="flex flex-col items-center text-center">
+                <div class="stat-bubble mb-4 stat-card">
+                    <div class="text-6xl font-black text-cyan-600" data-value="22">0</div>
+                </div>
+                <p class="text-sm uppercase tracking-widest font-black text-slate-600">Conv. Lift %</p>
+            </div>
+        </section>
+
+        <!-- WORK SECTION -->
+        <section id="work" class="py-24 px-8 max-w-6xl mx-auto relative z-20">
+            <h2 class="text-5xl md:text-7xl font-black mb-24 text-center text-slate-900 tracking-tighter">THE<br><span class="text-purple-600">DROP</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Case 01 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-xs font-black uppercase px-3 py-1 bg-purple-500 text-white rounded-full">Case 01</span>
+                        <span class="font-bold opacity-40 text-sm">2025</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-6 group-hover:text-purple-600 transition-colors text-slate-800">SMART NURSE</h3>
+                    <p class="text-lg mb-12 text-slate-600 font-medium">Healthcare e-commerce optimization. Streamlining medical supply procurement.</p>
+                    <a href="https://smartnursev11.pages.dev/" target="_blank" class="inline-block bg-black text-white px-8 py-4 font-bold uppercase rounded-full hover:bg-purple-600 transition-all">View Project $\rightarrow$</a>
+                </div>
+                <!-- Case 02 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-xs font-black uppercase px-3 py-1 bg-pink-500 text-white rounded-full">Case 02</span>
+                        <span class="font-bold opacity-40 text-sm">2024</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-6 group-hover:text-pink-600 transition-colors text-slate-800">JABEZ TEAMS</h3>
+                    <p class="text-lg mb-12 text-slate-600 font-medium">Team management portal for digital agencies. High-efficiency tracking.</p>
+                    <a href="https://jabezteams.pages.dev/" target="_blank" class="inline-block bg-black text-white px-8 py-4 font-bold uppercase rounded-full hover:bg-pink-600 transition-all">View Project $\rightarrow$</a>
+                </div>
+                <!-- Case 03 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-xs font-black uppercase px-3 py-1 bg-cyan-500 text-white rounded-full">Case 03</span>
+                        <span class="font-bold opacity-40 text-sm">2024</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-6 group-hover:text-cyan-600 transition-colors text-slate-800">HAPPY FATHER</h3>
+                    <p class="text-lg mb-12 text-slate-600 font-medium">Niche gift e-commerce site. Optimized for emotional triggers.</p>
+                    <a href="https://happyfather.pages.dev/" target="_blank" class="inline-block bg-black text-white px-8 py-4 font-bold uppercase rounded-full hover:bg-cyan-600 transition-all">View Project $\rightarrow$</a>
+                </div>
+                <!-- Case 04 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-xs font-black uppercase px-3 py-1 bg-yellow-500 text-white rounded-full">Case 04</span>
+                        <span class="font-bold opacity-40 text-sm">2023</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-6 group-hover:text-yellow-600 transition-colors text-slate-800">HAPPY MOTHER ANNIE</h3>
+                    <p class="text-lg mb-12 text-slate-600 font-medium">Bespoke floral and gift shop. Personalized gift-wrapping UX.</p>
+                    <a href="https://happymotherannie.pages.dev/" target="_blank" class="inline-block bg-black text-white px-8 py-4 font-bold uppercase rounded-full hover:bg-yellow-600 transition-all">View Project $\rightarrow$</a>
+                </div>
+                <!-- Case 05 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-xs font-black uppercase px-3 py-1 bg-purple-500 text-white rounded-full">Case 05</span>
+                        <span class="font-bold opacity-40 text-sm">2023</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-6 group-hover:text-purple-600 transition-colors text-slate-800">DHANVANTRI</h3>
+                    <p class="text-lg mb-12 text-slate-600 font-medium">Ayurvedic health store. Balanced traditional values with modern conversion.</p>
+                    <a href="https://dhanvantri1.pages.dev/" target="_blank" class="inline-block bg-black text-white px-8 py-4 font-bold uppercase rounded-full hover:bg-purple-600 transition-all">View Project $\rightarrow$</a>
+                </div>
+                <!-- Case 06 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-xs font-black uppercase px-3 py-1 bg-pink-500 text-white rounded-full">Case 06</span>
+                        <span class="font-bold opacity-40 text-sm">2023</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-6 group-hover:text-pink-600 transition-colors text-slate-800">DHANVANTRI LANDING</h3>
+                    <p class="text-lg mb-12 text-slate-600 font-medium">High-converting landing page for Ayurvedic product launches.</p>
+                    <a href="https://dhanvantri-landingpage.pages.dev/" target="_blank" class="inline-block bg-black text-white px-8 py-4 font-bold uppercase rounded-full hover:bg-pink-600 transition-all">View Project $\rightarrow$</a>
+                </div>
+                <!-- Case 07 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-xs font-black uppercase px-3 py-1 bg-cyan-500 text-white rounded-full">Case 07</span>
+                        <span class="font-bold opacity-40 text-sm">2023</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-6 group-hover:text-cyan-600 transition-colors text-slate-800">JABEZ PORTFOLIO</h3>
+                    <p class="text-lg mb-12 text-slate-600 font-medium">Personal showcase of architectural design and frontend engineering.</p>
+                    <a href="https://portfoliodavidjabez.pages.dev/" target="_blank" class="inline-block bg-black text-white px-8 py-4 font-bold uppercase rounded-full hover:bg-cyan-600 transition-all">View Project $\rightarrow$</a>
+                </div>
+                <!-- Case 08 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-xs font-black uppercase px-3 py-1 bg-yellow-500 text-white rounded-full">Case 08</span>
+                        <span class="font-bold opacity-40 text-sm">2023</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-6 group-hover:text-yellow-600 transition-colors text-slate-800">B-DAY APPA</h3>
+                    <p class="text-lg mb-12 text-slate-600 font-medium">Luxe interactive digital birthday experience.</p>
+                    <a href="https://happybirthdayappa.pages.dev/" target="_blank" class="inline-block bg-black text-white px-8 py-4 font-bold uppercase rounded-full hover:bg-yellow-600 transition-all">View Project $\rightarrow$</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-24 px-8 max-w-6xl mx-auto relative z-20">
+            <div class="bg-white border-4 border-black p-12 grid grid-cols-1 md:grid-cols-2 gap-24 items-center rounded-[60px] shadow-[20px_20px_0px_#B026FF]">
+                <div class="relative">
+                    <div class="aspect-square bg-gradient-to-br from-purple-400 via-pink-400 to-yellow-300 rounded-[80px] flex items-center justify-center text-center p-12 shadow-2xl transform rotate-6 hover:rotate-0 transition-transform duration-500">
+                        <p class="text-3xl font-black uppercase leading-tight text-white drop-shadow-lg">
+                            "Stop blending in.<br>Start converting."
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-6xl font-black mb-8 text-slate-900 tracking-tighter">THE VIBE<br>ENGINEER</h2>
+                    <p class="text-xl font-medium leading-relaxed mb-12 text-slate-600">
+                        I engineer digital experiences that feel like a hit of dopamine. By blending high-saturation aesthetics with hard-hitting conversion logic, I build stores that can't be ignored.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-6 py-3 bg-purple-100 text-purple-600 border-2 border-purple-600 rounded-full text-xs font-black uppercase tracking-widest">Next.js</span>
+                        <span class="px-6 py-3 bg-pink-100 text-pink-600 border-2 border-pink-600 rounded-full text-xs font-black uppercase tracking-widest">Tailwind CSS</span>
+                        <span class="px-6 py-3 bg-cyan-100 text-cyan-600 border-2 border-cyan-600 rounded-full text-xs font-black uppercase tracking-widest">Shopify Plus</span>
+                        <span class="px-6 py-3 bg-yellow-100 text-yellow-600 border-2 border-yellow-600 rounded-full text-xs font-black uppercase tracking-widest">Dopamine UX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="py-24 px-8 text-center max-w-3xl mx-auto relative z-20">
+            <h2 class="text-6xl md:text-8xl font-black mb-12 leading-tight text-slate-900 tracking-tighter">Ready to<br><span class="text-purple-600">Level Up?</span></h2>
+            <a href="mailto:jabeztechw@gmail.com" class="dopamine-btn text-2xl px-16 py-8">
+                Let's Cook 🚀
+            </a>
+        </section>
+    </main>
+
+    <footer class="px-8 py-12 border-t-4 border-black flex flex-col md:flex-row justify-between items-center gap-8 font-black uppercase text-xs tracking-widest relative z-20 bg-white">
+        <div class="text-slate-500">David Jabez.M &copy; 2026 // DOPAMINE_STUDIO</div>
+        <div class="flex gap-8">
+            <a href="mailto:jabeztechw@gmail.com" class="hover:text-purple-600 transition-colors">Email</a>
+            <a href="https://www.instagram.com/webmakers123" target="_blank" class="hover:text-purple-600 transition-colors">Instagram</a>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1,
+                ease: "power2.out"
+            });
+        });
+
+        // Interaction effects for cursor
+        document.querySelectorAll('a, .project-card, .dopamine-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { width: 60, height: 60, background: '#FAFF00', scale: 1.2 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { width: 30, height: 30, background: '#FAFF00', scale: 1 });
+            });
+        });
+
+        // Hero animations
+        gsap.from(".hero-title", {
+            opacity: 0,
+            scale: 0.5,
+            rotate: -10,
+            duration: 1,
+            ease: "back.out(1.7)",
+            delay: 0.2
+        });
+
+        gsap.from(".hero-sub", {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            delay: 0.5
+        });
+
+        // Stats counter
+        const counters = document.querySelectorAll('[data-value]');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-value');
+            ScrollTrigger.create({
+                trigger: counter,
+                onEnter: () => {
+                    let count = 0;
+                    const interval = setInterval(() => {
+                        count++;
+                        counter.innerText = count;
+                        if (count === target) clearInterval(interval);
+                    }, 20);
+                }
+            });
+        });
+
+        // Project cards bounce-in
+        gsap.from(".project-card", {
+            opacity: 0,
+            scale: 0.8,
+            y: 100,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+                trigger: "#work",
+                start: "top 98%",
+                toggleActions: "play none none none",
+                once: true
+            }
+        });
+        // Fail-safe for cards - ensure they stay visible
+        ScrollTrigger.refresh();
+        gsap.set(".project-card", { opacity: 1, scale: 1, y: 0 });
+    </script>
+</body>
+</html>
